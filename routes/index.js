@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/loaddata', function(req, res, next) {
   // Create a query to insert row
-  var query = "INSERT INTO USZipcodes(username, title, modified, ratings, filelink, ratingscount) VALUES('"+username+"','"+title+"','"+modified+"','"+ratings+"','"+filelink+"','"+ratingscount+"')";
+  var query = "BULK INSERT USZipcodes FROM '/home/site/wwwroot/data/USZipcodes.csv' WITH (FIELDTERMINATOR = ',',ROWTERMINATOR = '\n'); ";
   var request = new Request(query, function(err,rowcount,rows){
     if (err){
       console.log('error %o',err);
