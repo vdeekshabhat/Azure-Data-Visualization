@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var connection = require('./connection.js');
-var Request = require('tedious').Request;
-
+//var connection = require('./connection.js');
+//var Request = require('tedious').Request;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -14,7 +13,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { name: response.name, age: response.age });
 });
 
-router.get('/loaddata', function(req, res, next) {
+/*router.get('/loaddata', function(req, res, next) {
   // Create a query to insert row
   // Read CSV
   // Construct insert query
@@ -27,5 +26,6 @@ router.get('/loaddata', function(req, res, next) {
     console.log('success');
   });
   connection.execSql(request);
-});
+});*/
+
 module.exports = router;
