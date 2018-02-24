@@ -2,11 +2,11 @@ var Connection = require('tedious').Connection;
 var Request = require('tedious').Request;
 
 var config = {
-    userName: 'deekshabhat',
-    password: 'Chinku#1',
-    server: 'photoalbum-6331.database.windows.net',
+    userName: 'root',
+    password: 'deeksha',
+    server: 'assign3cloud.scm.azurewebsites.net',
     options: {
-      database: 'Photo_Album',
+      database: 'sampledb',
       encrypt: true
     }
 }
