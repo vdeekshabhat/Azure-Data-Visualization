@@ -1,23 +1,15 @@
-var Connection = require('tedious').Connection;
-var Request = require('tedious').Request;
+var mysql = require('mysql');
 
-var config = {
-    userName: 'root',
-    password: 'deeksha',
-    server: 'assign3cloud.scm.azurewebsites.net',
-    options: {
-      database: 'sampledb',
-      encrypt: true
-    }
-}
-var connection = new Connection(config);
-
-connection.on('connect', function(err){
-    if (!err){
-      console.log('connection successful');
-    } else {
-      console.error('connection unsuccessful %o',err);
-    }
+var con = mysql.createConnection({
+  host: "assign3cloud.scm.azurewebsites.net",
+  user: "root",
+  password: "deeksha",
+  database: "sampledb"
 });
 
-module.exports = connection;
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+});
+
+module.exports = con;
