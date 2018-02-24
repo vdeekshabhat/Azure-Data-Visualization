@@ -1,7 +1,7 @@
 var mysql = require('mysql');
 
 var con = mysql.createConnection({
-  host: "assign3cloud.azurewebsites.net",
+  host: "localhost",
   user: "root",
   password: "deeksha",
   database: "sampledb",
