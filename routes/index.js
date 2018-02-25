@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/loaddata', function(req, res, next) {
-  var query = "LOAD DATA INFILE '/var/lib/mysql-files/USZipcodes.csv' INTO TABLE USZipcodes FIELDS TERMINATED BY ',' (zip,state,county,city);";
+  var query = "LOAD DATA INFILE '/var/lib/mysql-files/USZipcodes.csv' INTO TABLE USZipcodes FIELDS TERMINATED BY ',' IGNORE 1 LINES (zip,state,county,city);";
   start = new Date().getTime();
 
   connection.query(query, function(err, rows, fields) {
