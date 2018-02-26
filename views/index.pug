@@ -4,3 +4,19 @@ block content
   h1 User Details
   p User Name #{name}
   input(name='age', type='text', value=age)
+
+block content
+  h1= title
+  a(href='/loaddata') Load CSV
+
+  form(action='/ziprange' method='post')
+    label Start Zip
+    input(name='zipstart' value='0')   
+    label End Zip
+    input(name='zipend' value='0') 
+    button(type='submit') Submit
+
+  each row in rows
+    p State : #{row.state}
+    p County : #{row.county}
+    hr
