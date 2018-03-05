@@ -39,6 +39,8 @@ ALTER TABLE Starbucks MODIFY Name varchar(100);
 ssh -i sshkeyazure deekshabhat@40.69.154.137
 
 scp -i sshkeyazure Desktop/NodeProjects/assign3/routes/index.js deekshabhat@40.69.154.137:~/NodeProject/assignment3azure/routes
+scp -i sshkeyazure Desktop/NodeProjects/assign3/views/index.pug deekshabhat@40.69.154.137:~/NodeProject/assignment3azure/views
+scp -i sshkeyazure Desktop/NodeProjects/assign3/views/layout.pug deekshabhat@40.69.154.137:~/NodeProject/assignment3azure/views
 
 
 

@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/loaddata', function(req, res, next) {
-  var query = "LOAD DATA INFILE '/var/lib/mysql-files/Starbucks.csv' INTO TABLE Starbucks FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\r\n' IGNORE 1 LINES (id,StarbucksId,Name,StoreNumber,PhoneNumber,Street1,Street2,Street3,city,CountrySubdivisionCode,CountryCode,PostalCode,@Longitude,@Latitude,Timezone)SET Longitude = nullif(@Longitude,' '),Latitude = nullif(@Latitude,' ');";
+  var query = "LOAD DATA INFILE '/var/lib/mysql-files/earthq.csv' INTO TABLE earthquake FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\r\n' IGNORE 1 LINES (time,latitude,longitude,@mag,net,place) SET mag = nullif(@mag,'');";
   start = new Date().getTime();
 
   connection.query(query, function(err, rows, fields) {
@@ -31,12 +31,51 @@ router.get('/loaddata', function(req, res, next) {
   });
 });
 
-router.post('/ziprange', function(req, res, next) {
-  var zipstart = req.body.zipstart;
-  var zipend = req.body.zipend;
+router.post('/earthquake', function(req, res, next) {
+  var longitude = req.body.longitude;
+  var latitude = req.body.latitude;
+  var mag = req.body.mag;
+  var net = req.body.net;
+  var place = req.body.place;
+  var query = "Select * from earthquake where ";
+  var count=0;
+  if(longitude){
+    query=query+" longitude="+longitude;
+    count++;
 
-  var query = "Select * from USZipcodes where zip between "+zipstart+" and "+zipend+";";
+  }
+  if(latitude){
+    if(count>0)
+    query=query+" and latitude="+latitude;
+    else
+    query=query+" latitude="+latitude;
+  count++;
 
+  }
+  if(mag){
+    if(count>0)
+    query=query+" and mag="+mag;
+    else
+    query=query+" mag="+mag; 
+  count++; 
+  
+  }
+  
+  if(net){
+    if(count>0)
+    query=query+" and net='"+net+"'";
+    else
+    query=query+" net='"+net+"'"; 
+  count++; 
+  }
+
+  if(place){
+    if(count>0)
+    query=query+" and place='"+place+"'";
+    else
+    query=query+" place='"+place+"';"; 
+  count++; 
+  }
   start = new Date().getTime();
 
   connection.query(query, function(err, rows, fields) {
