@@ -36,7 +36,7 @@ router.get('/countrypiechart', function(req, res, next) {
   start = new Date().getTime();
   console.log('start = '+start);
 
-  connection.query(query, function(err, rows, fields) {
+  connection.query(q, function(err, rows, fields) {
     end = new Date().getTime();
     console.log('end = '+end);
 
