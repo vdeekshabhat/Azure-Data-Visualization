@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-//var connection = require('./connection.js');
+var connection = require('./connection.js');
 var Request = require('tedious').Request;
 
 
