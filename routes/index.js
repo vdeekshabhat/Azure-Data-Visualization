@@ -43,7 +43,8 @@ router.get('/countrypiechart', function(req, res, next) {
     diff = (end-start)/1000 + 'sec';
     if (!err){
       console.log('%o',rows);
-      res.send('success. The time taken for execution is: '+diff);
+      res.json(rows);
+      //res.send('success. The time taken for execution is: '+diff);
     }
     else{
       console.log('error %o',err);
