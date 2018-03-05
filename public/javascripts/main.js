@@ -2,9 +2,9 @@ $(document).ready(function(){
     $('.submitbtn').click(function(){
         // Ajax call to get results from db
         $.ajax({url: "/countrypiechart", success: function(result){
-            console.log('%o',result);
-            var chartdata = [['CountryCode', 'Count']];
-            for(var row in result){
+            chartdata = [['CountryCode', 'Count']];
+            for(var index in result){
+                row = result[index];
                 chartdata.push([row.CountryCode, parseInt(row.cnt)])
             }
             console.log('%o',chartdata);
