@@ -32,11 +32,14 @@ router.get('/loaddata', function(req, res, next) {
 });
 
 router.get('/countrypiechart', function(req, res, next) {
-  var q = "select count(*) as cnt,CountryCode from Starbucks group by CountryCode limit 10;";
+  var q = "select count(*) as cnt,CountryCode from Starbucks group by CountryCode limit 10";
   start = new Date().getTime();
+  console.log('start = '+start);
 
   connection.query(query, function(err, rows, fields) {
     end = new Date().getTime();
+    console.log('end = '+end);
+
     diff = (end-start)/1000 + 'sec';
     if (!err){
       console.log('%o',rows);
@@ -47,6 +50,8 @@ router.get('/countrypiechart', function(req, res, next) {
       res.send('error '+diff);
     }
   });
+
+  console.log('am here - '+q);
 });
 
 router.post('/earthquake', function(req, res, next) {
