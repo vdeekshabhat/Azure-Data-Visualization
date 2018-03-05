@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var connection = require('./connection.js');
+//var connection = require('./connection.js');
 var Request = require('tedious').Request;
 
 
@@ -22,6 +22,24 @@ router.get('/loaddata', function(req, res, next) {
     end = new Date().getTime();
     diff = (end-start)/1000 + 'sec';
     if (!err){
+      res.send('success. The time taken for execution is: '+diff);
+    }
+    else{
+      console.log('error %o',err);
+      res.send('error '+diff);
+    }
+  });
+});
+
+router.get('/countrypiechart', function(req, res, next) {
+  var q = "select count(*) as cnt,CountryCode from Starbucks group by CountryCode limit 10;";
+  start = new Date().getTime();
+
+  connection.query(query, function(err, rows, fields) {
+    end = new Date().getTime();
+    diff = (end-start)/1000 + 'sec';
+    if (!err){
+      console.log('%o',rows);
       res.send('success. The time taken for execution is: '+diff);
     }
     else{

@@ -20,7 +20,7 @@ block content
     input(name='net' value='0') 
     label place
     input(name='place' value='0') 
-    button(type='submit') Submit
+    button(type='button' class='submitbtn') Submit
 
   each row in rows
     p Time : #{row.time}
@@ -30,3 +30,5 @@ block content
     p Net : #{row.net}
     p Place : #{row.place}
     hr
+
+  div#piechart
