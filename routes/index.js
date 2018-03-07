@@ -34,7 +34,10 @@ router.get('/loaddata', function(req, res, next) {
 router.post('/education', function(req, res, next) {
   var startunit = req.body.startunit;
   var endunit = req.body.endunit;
-  var q = "select avg(sat_avg) as avg,state from Education where unitid between "+startunit+" and "+endunit+" group by state limit 10";
+  console.log('req.body = %o',req.body);
+  console.log('req.params = %o',req.params);
+
+  /*var q = "select avg(sat_avg) as avg,state from Education where unitid between "+startunit+" and "+endunit+" group by state limit 10";
   start = new Date().getTime();
   console.log('start = '+start);
 
@@ -54,7 +57,7 @@ router.post('/education', function(req, res, next) {
     }
   });
 
-  console.log('am here - '+q);
+  console.log('am here - '+q);*/
 });
 
 // router.post('/earthquake', function(req, res, next) {

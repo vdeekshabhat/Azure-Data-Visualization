@@ -9,12 +9,12 @@ block content
   h1= title
   a(href='/loaddata') Load CSV
 
-  form(action='/education' method='post')
+  form(action='/education' id="form" method='post')
     label startunit
     input(name='startunit' value='0')   
     label endunit
     input(name='endunit' value='0')   
-    button(type='button' class='submitbtn') Submit
+    button(type='submit' class='submitbtn') Submit
 
   //- each row in rows
   //-   p Time : #{row.time}
