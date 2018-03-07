@@ -43,6 +43,6 @@ function drawChart(chartdata) {
     var options = {
         title: 'Country Pie Chart'
     };
-    var chart = new google.visualization.LineChart(document.getElementById('piechart'));
+    var chart = new google.visualization.ScatterChart(document.getElementById('piechart'));
     chart.draw(data, options);
 }
