@@ -31,7 +31,7 @@ router.get('/loaddata', function(req, res, next) {
   });
 });
 
-router.get('/education', function(req, res, next) {
+router.post('/education', function(req, res, next) {
   var startunit = req.body.startunit;
   var endunit = req.body.endunit;
   var q = "select avg(SAT_AVG) as avg,State from Education where unitid between "+startunit+" and "+endunit+" group by State limit 10";
