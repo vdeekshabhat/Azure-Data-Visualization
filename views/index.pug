@@ -9,26 +9,20 @@ block content
   h1= title
   a(href='/loaddata') Load CSV
 
-  form(action='/earthquake' method='post')
-    label Latitude
-    input(name='latitude' value='0')   
-    label Longitude
-    input(name='longitude' value='0') 
-    label mag
-    input(name='mag' value='0') 
-    label net
-    input(name='net' value='0') 
-    label place
-    input(name='place' value='0') 
+  form(action='/education' method='post')
+    label startunit
+    input(name='startunit' value='0')   
+    label endunit
+    input(name='endunit' value='0')   
     button(type='button' class='submitbtn') Submit
 
-  each row in rows
-    p Time : #{row.time}
-    p Latitude : #{row.latitude}
-    p Longitude : #{row.longitude}
-    p Mag : #{row.mag}
-    p Net : #{row.net}
-    p Place : #{row.place}
-    hr
+  //- each row in rows
+  //-   p Time : #{row.time}
+  //-   p Latitude : #{row.latitude}
+  //-   p Longitude : #{row.longitude}
+  //-   p Mag : #{row.mag}
+  //-   p Net : #{row.net}
+  //-   p Place : #{row.place}
+  //-   hr
 
   div#piechart

@@ -1,11 +1,11 @@
 $(document).ready(function(){
     $('.submitbtn').click(function(){
         // Ajax call to get results from db
-        $.ajax({url: "/countrypiechart", success: function(result){
-            chartdata = [['CountryCode', 'Count']];
+        $.ajax({url: "/education", success: function(result){
+            chartdata = [['State', 'Average']];
             for(var index in result){
                 row = result[index];
-                chartdata.push([row.CountryCode, parseInt(row.cnt)])
+                chartdata.push([row.State, parseInt(row.avg)])
             }
             console.log('%o',chartdata);
             drawChart(chartdata);
