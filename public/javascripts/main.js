@@ -1,7 +1,7 @@
 $(document).ready(function(){
     $('.submitbtn').click(function(){
         // Ajax call to get results from db
-        $.ajax({url: "/countrypiechart", success: function(result){
+        $.ajax({url: "/education", success: function(result){
             chartdata = [['State', 'Average']];
             for(var index in result){
                 row = result[index];
