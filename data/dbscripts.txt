@@ -34,7 +34,7 @@ ALTER TABLE Starbucks MODIFY Name varchar(100);
 
   var query = "LOAD DATA INFILE '/var/lib/mysql/Starbucks.csv' INTO TABLE Starbucks FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\r\n' IGNORE 1 LINES (id,StarbucksId,Name,StoreNumber,PhoneNumber,Street1,Street2,Street3,city,CountrySubdivisionCode,CountryCode,PostalCode,@Longitude,@Latitude,Timezone)SET Longitude = nullif(@Longitude,' '),Latitude = nullif(@Latitude,' ');";
 
-  var query = "LOAD DATA INFILE '/var/lib/mysql-files/USZipcodes.csv' INTO TABLE USZipcodes FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\r\n' IGNORE 1 LINES (zip,state,county,city);";
+  var query = "LOAD DATA LOCAL INFILE '/var/lib/mysql/USZipcodes.csv' INTO TABLE USZipcodes FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\r\n' IGNORE 1 LINES (zip,state,county,city);";
 
 ssh -i sshkeyazure deekshabhat@40.69.154.137
 
@@ -55,4 +55,23 @@ create table Education (
     opeid int, opeid6 int,instnm text,city text,state text,instrul text,sat_avg int,graddept decimal);
 
 )
-LOAD DATA INFILE '/var/lib/mysql-files/Education.csv' INTO TABLE Education FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\r\n' IGNORE 1 LINES (unitid,opeid,opeid6,instnm,city,state,instrul,@sat_avg,@graddept) SET sat_avg = nullif(@sat_avg,'NULL'),graddept = nullif(@graddept,'PrivacySuppressed');
+
+LOAD DATA LOCAL INFILE '/var/lib/mysql/Education.csv' INTO TABLE Education FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\r\n' IGNORE 1 LINES (unitid,opeid,opeid6,instnm,city,state,instrul,@sat_avg,@graddept) SET sat_avg = nullif(@sat_avg,'NULL'),graddept = nullif(@graddept,'PrivacySuppressed');
+
+
+create table StateVotingClean(
+    id int not null auto_increment PRIMARY KEY,
+    StateName varchar(50),
+    TotalPop varchar(20),
+    VotePop varchar(20),
+    Registered varchar(20),
+    PercentReg decimal(3,1),
+    Voted varchar(20),
+    PercentVote decimal(3,1)
+);
+
+LOAD DATA LOCAL INFILE '/var/lib/mysql/StateVotingClean.csv' INTO TABLE StateVotingClean FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\r\n' IGNORE 1 LINES (StateName,@TotalPop,@VotePop,@Registered,PercentReg,@Voted,PercentVote) set TotalPop = replace(@TotalPop,',',''),VotePop = replace(@VotePop,',',''),Registered = replace(@Registered,',',''),Voted = replace(@Voted,',','');
+
+select Registered, Voted, StateName from StateVotingClean where StateName in(Select state from USZipcodes where zip between "+startzip+" and "+endzip+" );
+
+select instnm,zip from Education a, USZipcodes b where a.city=b.city and a.sat_avg between 900 and 1010 and a.city ='Birmingham';
