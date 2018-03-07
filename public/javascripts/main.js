@@ -6,7 +6,7 @@ $(document).ready(function(){
             chartdata = [['State', 'Average']];
             for(var index in result){
                 row = result[index];
-                chartdata.push([row.State, parseInt(row.avg)])
+                chartdata.push([row.state, parseInt(row.avg)])
             }
             console.log('%o',chartdata);
             drawChart(chartdata);
