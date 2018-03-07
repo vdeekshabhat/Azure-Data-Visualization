@@ -23,10 +23,10 @@ $(document).ready(function(){
                success: function(result)
                {
                     console.log('%o',result);
-                    chartdata = [['State', 'Average']];
+                    chartdata = [['State', 'Registered', 'Voted']];
                     for(var index in result){
                         row = result[index];
-                        chartdata.push([row.state, parseInt(row.avg)])
+                        chartdata.push([row.state, parseInt(row.Registered), parseInt(row.Voted)])
                     }
                     console.log('%o',chartdata);
                     drawChart(chartdata);
@@ -43,6 +43,6 @@ function drawChart(chartdata) {
     var options = {
         title: 'Country Pie Chart'
     };
-    var chart = new google.visualization.ScatterChart(document.getElementById('piechart'));
+    var chart = new google.visualization.LineChart(document.getElementById('piechart'));
     chart.draw(data, options);
 }

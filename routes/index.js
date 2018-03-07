@@ -32,10 +32,10 @@ router.get('/loaddata', function(req, res, next) {
 });
 
 router.post('/education', function(req, res, next) {
-  var startunit = req.body.startunit;
-  var endunit = req.body.endunit;
+  var startzip = req.body.startzip;
+  var endzip = req.body.endzip;
 
-  var q = "select avg(sat_avg) as avg,state from Education where unitid between "+startunit+" and "+endunit+" group by state limit 10";
+  var q = "Select Registered, Voted, StateName from StateVotingClean where StateName in(Select state from USZipcodes where zip between "+startzip+" and "+endzip+" );";
   start = new Date().getTime();
   console.log('start = '+start);
 
