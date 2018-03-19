@@ -72,6 +72,9 @@ create table StateVotingClean(
 
 LOAD DATA LOCAL INFILE '/var/lib/mysql/StateVotingClean.csv' INTO TABLE StateVotingClean FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\r\n' IGNORE 1 LINES (StateName,@TotalPop,@VotePop,@Registered,PercentReg,@Voted,PercentVote) set TotalPop = replace(@TotalPop,',',''),VotePop = replace(@VotePop,',',''),Registered = replace(@Registered,',',''),Voted = replace(@Voted,',','');
 
+
+
+
 select Registered, Voted, StateName from StateVotingClean where StateName in(Select state from USZipcodes where zip between "+startzip+" and "+endzip+" );
 
-select instnm,zip from Education a, USZipcodes b where a.city=b.city and a.sat_avg between 900 and 1010 and a.city ='Birmingham';
+select instnm,zip from Education a, USZipcodes b where a.city=b.city and a.sat_avg between 0 and 100000000 and a.city ='Cambridge';
