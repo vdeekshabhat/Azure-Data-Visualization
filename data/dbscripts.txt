@@ -44,7 +44,10 @@ scp -i sshkeyazure Desktop/NodeProjects/assign3/views/layout.pug deekshabhat@40.
 
 
 
-scp -i sshkeyazure Downloads/Starbucks.csv deekshabhat@40.69.154.137:~/
+scp -i sshkeyazure Downloads/Starbucks.csv ec2-user@ec2-user@ip-172-31-16-203 ~/
+
+scp -i Downloads/deeksha.pem Desktop/USZipcodes.csv ec2-18-222-95-82.us-east-2.compute.amazonaws.com
+
 
 sudo mv Starbucks.csv /var/lib/mysql-files/
 
@@ -78,3 +81,6 @@ LOAD DATA LOCAL INFILE '/var/lib/mysql/StateVotingClean.csv' INTO TABLE StateVot
 select Registered, Voted, StateName from StateVotingClean where StateName in(Select state from USZipcodes where zip between "+startzip+" and "+endzip+" );
 
 select instnm,zip from Education a, USZipcodes b where a.city=b.city and a.sat_avg between 0 and 100000000 and a.city ='Cambridge';
+
+
+LOAD DATA INFILE '/var/lib/mysql-files/USZipcodes.csv' INTO TABLE USZipcodes FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\r\n' IGNORE 1 LINES (zip,state,county,city);
