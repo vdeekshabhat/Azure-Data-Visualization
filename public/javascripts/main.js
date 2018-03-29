@@ -23,7 +23,7 @@ $(document).ready(function(){
                success: function(result)
                {
                     console.log('%o',result);
-                    chartdata = [['State', 'Registered', 'Voted']];
+                    chartdata = ['CourseNumber','SectionNumber'];
                     for(var index in result){
                         row = result[index];
                         chartdata.push([row.state, parseInt(row.Registered), parseInt(row.Voted)])
@@ -43,6 +43,6 @@ function drawChart(chartdata) {
     var options = {
         title: 'Country Pie Chart'
     };
-    var chart = new google.visualization.LineChart(document.getElementById('piechart'));
+    var chart = new google.visualization.BarChart(document.getElementById('piechart'));
     chart.draw(data, options);
 }
