@@ -35,7 +35,7 @@ router.post('/education', function(req, res, next) {
   var startzip = req.body.startzip;
   var endzip = req.body.endzip;
 
-  var q = "select substr(Subject,1,1) as alpha, count(CourseNumber)from CSEFall2018 group by substr(Subject,1,1);";
+  var q = "select substr(Subject,1,1) as Coursenumber, count(CourseNumber)as Sectionnumber as betafrom CSEFall2018 group by substr(Subject,1,1);";
   start = new Date().getTime();
   console.log('start = '+start);
 
