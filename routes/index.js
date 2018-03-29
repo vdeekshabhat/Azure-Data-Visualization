@@ -35,7 +35,7 @@ router.post('/education', function(req, res, next) {
   var startzip = req.body.startzip;
   var endzip = req.body.endzip;
 
-  var q = "Select CourseNumber,SectionNumber from CSEFall2018 Group By SectionNumber;";
+  var q = "Select CourseNumber,SectionNumber from CSEFall2018 Group By SectionNumber,CourseNumber;";
   start = new Date().getTime();
   console.log('start = '+start);
 
