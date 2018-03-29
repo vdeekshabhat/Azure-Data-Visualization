@@ -26,7 +26,7 @@ $(document).ready(function(){
                     chartdata = [['SectionNumber','CourseNumber']];
                     for(var index in result){
                         row = result[index];
-                        chartdata.push([parseInt(row.Sectionnumber), row.Coursenumber])
+                        chartdata.push([row.Sectionnumber, parseInt(row.Coursenumber)])
                     }
                     console.log('%o',chartdata);
                     drawChart(chartdata);
