@@ -23,7 +23,7 @@ $(document).ready(function(){
                success: function(result)
                {
                     console.log('%o',result);
-                    chartdata = ['CourseNumber','SectionNumber'];
+                    chartdata = [['CourseNumber','SectionNumber']];
                     for(var index in result){
                         row = result[index];
                         chartdata.push([parseInt(row.Coursenumber), parseInt(row.Sectionnumber)])
