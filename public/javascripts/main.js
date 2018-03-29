@@ -23,10 +23,10 @@ $(document).ready(function(){
                success: function(result)
                {
                     console.log('%o',result);
-                    chartdata = [['CourseNumber','SectionNumber']];
+                    chartdata = [['SectionNumber','CourseNumber']];
                     for(var index in result){
                         row = result[index];
-                        chartdata.push([row.Coursenumber, parseInt(row.Sectionnumber)])
+                        chartdata.push([row.Sectionnumber, row.Coursenumber])
                     }
                     console.log('%o',chartdata);
                     drawChart(chartdata);
